@@ -1,0 +1,76 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "material-icon-theme.activeIconPack": "angular",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "typescript.suggest.completeFunctionCalls": false,
+    "typescript.suggest.completeJSDocs": true,
+    "typescript.preferences.quoteStyle": "single",
+    "typescript.format.semicolons": "insert",
+    "typescript.format.insertSpaceBeforeFunctionParenthesis": false,
+    "typescript.format.insertSpaceBeforeAndAfterBinaryOperators": true,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": false,
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "prettier.enable": true,
+    "prettier.requireConfig": true,
+    "prettier.configPath": "./.prettierrc",
+    "prettier.ignorePath": "./.prettierignore",
+    "prettier.prettierPath": "./node_modules/prettier",
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": [
+                    "keyword.other",
+                    "support.function.aggregate.sql"
+                ],
+                "settings": {
+                    "foreground": "#db7c74",
+                    "fontStyle": "bold"
+                }
+            },
+            {
+                "scope": [
+                    "source.sql",
+                    "string.quoted.double.sql"
+                ],
+                "settings": {
+                    "foreground": "#7dc9f1"
+                }
+            },
+            {
+                "scope": [
+                    "comment.line.double-dash.sql",
+                    "constant.numeric.sql"
+                ],
+                "settings": {
+                    "foreground": "#7ccc5c"
+                }
+            },
+            {
+                "scope": [
+                    "string.quoted.single.sql"
+                ],
+                "settings": {
+                    "foreground": "#e4e487"
+                }
+            },
+            {
+                "scope": [
+                    "keyword.operator.comparison.sql",
+                    "keyword.operator.star.sql"
+                ],
+                "settings": {
+                    "foreground": "#d6aaaa"
+                }
+            },
+            {
+                "scope": [
+                    "comment.block.source.sql"
+                ],
+                "settings": {
+                    "foreground": "#FF0000"
+                }
+            }
+        ]
+    }
+}

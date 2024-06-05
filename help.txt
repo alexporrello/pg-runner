@@ -1,0 +1,8 @@
+pg-runner [--arguments] [--options]
+
+Usage:
+    pg-runner [path] | "[query]"          Execute SQL file or query wrapped in double-quotes
+        [--output  | -o] <json | table>   Format of the console-printed query results
+    pg-runner format <path>               Format an SQL file
+    pg-runner psql                        Accepts input in the style of psql
+    pg-runner help | --help | -h          Display CLI documentation
