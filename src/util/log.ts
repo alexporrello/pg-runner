@@ -1,13 +1,19 @@
 import chalk from 'chalk';
 
-export const logErr = (...err: any[]) => {
-    console.error(chalk.red(...err));
+const error = console.error;
+console.error = (message?: any, ...optionalParams: any[]) => {
+    if (message) error(chalk.red(message));
+    optionalParams.forEach((param) => error(chalk.red(param)));
 };
 
-export const logSuccess = (...success: any[]) => {
-    console.log(chalk.green(...success));
+const debug = console.debug;
+console.debug = (message?: any, ...optionalParams: any[]) => {
+    if (message) debug(chalk.yellow(message));
+    optionalParams.forEach((param) => chalk.yellow(param));
 };
 
-export const logInfo = (...info: any[]) => {
-    console.log(chalk.yellow(...info));
+const info = console.info;
+console.info = (message?: any, ...optionalParams: any[]) => {
+    if (message) info(chalk.green(message));
+    optionalParams.forEach((param) => info(chalk.green(param)));
 };

@@ -1,8 +1,7 @@
 import pg from 'pg';
 import { Observable, catchError, concatMap, map, of } from 'rxjs';
 
-import { formatPgError, isPgError } from './pg-error.js';
-import { logErr } from '../util/log.js';
+import { formatPgError, isPgError } from './pg.js';
 
 export class RxClient {
     /** A client, initialized in the constructor with {@link params}. */
@@ -72,60 +71,6 @@ export class RxClient {
         });
     }
 
-    // execute<T extends QueryResultRow>(
-    //     queryText: string,
-    //     returnsCursors?: boolean
-    // ) {
-    //     const toReturn = <T>(queryResult: T) =>
-    //         this.end().pipe(
-    //             catchError((err) => {
-    //                 logErr('Failed to close connection');
-    //                 console.error(err);
-    //                 return of(queryResult);
-    //             }),
-    //             map(() => queryResult)
-    //         );
-
-    //     return this.connect().pipe(
-    //         concatMap(() =>
-    //             this.query<T>(queryText).pipe(
-    //                 concatMap((queryResult) => {
-    //                     if (returnsCursors) {
-    //                         const query = queryResult.find(
-    //                             (qr) =>
-    //                                 qr.command === 'SELECT' && qr.rowCount > 0
-    //                         );
-
-    //                         if (query) {
-    //                             const cursors = Object.values(query.rows[0]);
-    //                             return cursors.map((cursor) =>
-    //                                 this.query<T>(
-    //                                     `FETCH ALL FROM ${cursor}`
-    //                                 ).pipe(
-    //                                     tap((res) => {
-    //                                         res.forEach((queryRes) => {
-    //                                             console.log(
-    //                                                 queryRes.command +
-    //                                                     ' returned ' +
-    //                                                     queryRes.rowCount +
-    //                                                     ' rows'
-    //                                             );
-    //                                             console.table(queryRes.rows);
-    //                                         });
-    //                                     }),
-    //                                     concatMap(() => toReturn(queryResult))
-    //                                 )
-    //                             );
-    //                         }
-    //                     }
-
-    //                     return toReturn(queryResult);
-    //                 })
-    //             )
-    //         )
-    //     );
-    // }
-
     execute<T extends pg.QueryResultRow>(
         queryText: string,
         // @ts-ignore
@@ -137,7 +82,7 @@ export class RxClient {
                     concatMap((queryResult) =>
                         this.end().pipe(
                             catchError((err) => {
-                                logErr('Failed to close connection');
+                                console.error('Failed to close connection');
                                 console.error(err);
                                 return of(queryResult);
                             }),

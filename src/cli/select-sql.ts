@@ -4,7 +4,6 @@ import { map } from 'rxjs';
 import { exit } from 'process';
 
 import { prompt } from '../util/prompt.js';
-import { logErr } from '../util/log.js';
 
 const dirPath = resolve();
 const settingsPath = join(dirPath, '.pg-runner.tmp');
@@ -23,7 +22,7 @@ export function selectSQL() {
     );
 
     if (sqlFiles.length === 0) {
-        logErr(
+        console.error(
             'Error: This command must be run in a folder that contains .sql files.'
         );
         exit(0);

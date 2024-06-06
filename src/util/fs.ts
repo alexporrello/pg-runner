@@ -1,15 +1,14 @@
 import { PathLike } from 'fs';
 import { FileHandle, readFile } from 'fs/promises';
 import { Observable, concatMap, of } from 'rxjs';
-import { logErr } from './log.js';
 
 export const parseJSON = <T>(val: string) =>
     new Observable<T>((subscriber) => {
         try {
             subscriber.next(JSON.parse(val) as T);
         } catch (err) {
-            logErr('Error: Failed to parse JSON. Returning string.');
-            logErr(err);
+            console.error('Error: Failed to parse JSON. Returning string.');
+            console.error(err);
             subscriber.next(val as T);
         }
     });

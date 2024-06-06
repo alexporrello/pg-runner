@@ -2,12 +2,10 @@ import { existsSync, writeFileSync } from 'fs';
 import { join } from 'path';
 import { Observable, concatMap, map } from 'rxjs';
 
-import { clientConnect } from '../pg/client-connect.js';
-import { clientEnd } from '../pg/client-end.js';
-import { logInfo } from '../util/log.js';
 import { prompt } from '../util/prompt.js';
 import { readFileRx } from '../util/fs.js';
 import { __dirname } from '../dirname.js';
+import { clientConnect, clientEnd } from '../postgres/pg.js';
 
 const settingsPath = join(__dirname, 'settings.json');
 
@@ -67,7 +65,7 @@ export function initialize(): Observable<InitializeParams> {
             concatMap((params) =>
                 clientConnect(params).pipe(
                     concatMap((client) => {
-                        logInfo('Connection established.');
+                        console.info('Connection established.');
                         writeFileSync(
                             settingsPath,
                             JSON.stringify(params),
